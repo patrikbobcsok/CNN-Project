@@ -1,0 +1,47 @@
+
+# CNN Image Classification Report (V1)
+
+## Dataset
+- **Dataset**: Animals-10
+- **Image Size**: 64 x 64
+- **Number of Classes**: 10
+- **Train/Validation Split**: 80/20
+
+## Model Summary
+
+Model Architecture:
+- Input: (64, 64, 3)
+- Conv2D (16 filters, 3x3, relu, padding='same')
+- MaxPooling2D
+- Conv2D (32 filters, 3x3, relu, padding='same')
+- MaxPooling2D
+- Flatten
+- Dense (64 units, relu)
+- Dense (10 units, softmax)
+Total Parameters: ~65,000
+
+
+## Training
+- **Epochs**: 10
+- **Optimizer**: Adam
+- **Loss Function**: Sparse Categorical Crossentropy
+
+## Evaluation Metrics (on validation set)
+- **Accuracy**: 0.591
+- **Precision**: 0.5603
+- **Recall**: 0.5448
+- **F1 Score**: 0.5461
+
+## Observations
+- The model shows early signs of overfitting after epoch 6–7.
+- Accuracy plateaus around 59%.
+- Class confusion is notable between cat, dog, horse, and squirrel.
+- Spider class shows strong classification performance.
+
+## Visualizations
+- See 'v1_training_history.png' for training curves.
+
+## Next Steps
+- Add class weights to handle imbalance.
+- Introduce data augmentation.
+- Increase model depth or apply transfer learning.

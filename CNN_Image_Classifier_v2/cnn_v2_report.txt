@@ -1,0 +1,45 @@
+
+# CNN Image Classification Report (V2)
+
+## Dataset
+- **Dataset**: Animals-10
+- **Image Size**: 160 x 160
+- **Number of Classes**: 10
+- **Train/Validation/Test Split**: Approx. 70/15/15
+
+## Model Summary
+
+Model Architecture (V2):
+- Input: (160, 160, 3)
+- Conv2D (32 filters, 3x3, relu, padding='same') + BatchNorm
+- MaxPooling2D
+- Conv2D (64 filters, 3x3, relu, padding='same') + BatchNorm
+- MaxPooling2D
+- Conv2D (128 filters, 3x3, relu, padding='same') + BatchNorm
+- MaxPooling2D
+- Flatten
+- Dense (128 units, relu) + Dropout(0.5)
+- Dense (10 units, softmax)
+Total Parameters: ~380,000
+
+
+## Training
+- **Epochs**: 20
+- **Optimizer**: Adam with learning rate scheduling
+- **Loss Function**: Categorical Crossentropy
+- **Callbacks**: EarlyStopping, ReduceLROnPlateau
+
+## Evaluation Metrics (on test set)
+- **Accuracy**: 0.8118
+- **Precision**: 0.8057
+- **Recall**: 0.7969
+- **F1 Score**: 0.8008
+
+## Observations
+- Improved generalization with BatchNormalization and Dropout.
+- Class weights and data augmentation reduced bias toward majority classes.
+- Accuracy and F1 Score significantly improved over V1.
+- Longer patience and learning rate scheduler helped training stability.
+
+## Visualizations
+- See 'v2_training_history.png' for training curves.

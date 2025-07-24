@@ -1,0 +1,117 @@
+Animals-10 CNN Classification Project - Final Report
+
+Project Overview
+This project aimed to build a Convolutional Neural Network (CNN) to classify images from the Animals-10 dataset into 10 animal classes. The process involved iterative model development, evaluation, and optimization to improve accuracy while keeping training time and overfitting under control.
+
+Dataset and Preprocessing
+
+Dataset: Animals-10 with ~28,000 labeled images across 10 classes (dog, cat, horse, elephant, butterfly, chicken, cow, sheep, spider, squirrel).
+
+Image Size: Final input resolution used: 160x160x3.
+
+Preprocessing Steps:
+
+Loaded using image_dataset_from_directory() with validation_split=0.2, seed=123.
+
+Normalized pixel values [0, 255] to [0, 1].
+
+Used class weights to handle imbalance.
+
+CNN Architectures Compared
+V1: Baseline CNN
+
+3 convolutional blocks (Conv2D + MaxPooling)
+
+Flatten to Dense(128) to Dropout(0.5) to Dense(10)
+
+No normalization, minimal regularization
+
+Trained for 15 epochs
+
+Result: ~59% accuracy
+
+V2: Final CNN Model
+
+4 convolutional blocks with BatchNormalization after each Conv2D
+
+GlobalAveragePooling instead of Flatten
+
+Dense(128) to Dropout(0.5) to Dense(10)
+
+EarlyStopping(patience=5), ReduceLROnPlateau(patience=2, factor=0.5)
+
+Trained for 20 epochs with LR starting at 0.001
+
+Result: 81.18% accuracy, F1 Score: 80.08%
+
+Training Details
+
+Batch Size: 32
+
+Epochs: Up to 20 with EarlyStopping
+
+Optimizer: Adam
+
+Loss Function: Sparse Categorical Crossentropy
+
+Learning Rate: 0.001 with automatic reduction
+
+Evaluation Results (V2)
+
+Metric
+
+Score
+
+Accuracy
+
+81.18%
+
+Precision
+
+80.57%
+
+Recall
+
+79.69%
+
+F1 Score
+
+80.08%
+
+Strongest class: Spider (~89% recall)
+
+Weakest class: Sheep and Cow (~70% recall)
+
+Excellent generalization with minimal overfitting
+
+Key Insights
+
+Adding BatchNormalization significantly improved learning stability.
+
+Switching from Flatten to GlobalAveragePooling improved generalization.
+
+Learning rate scheduling allowed fine-tuning during late epochs.
+
+Class weighting helped improve performance on underrepresented classes.
+
+Best Model and Why
+The best-performing model is V2 with 81.18% accuracy. It performed better due to:
+
+Better regularization (BatchNorm + Dropout)
+
+Smarter training strategies (EarlyStopping, LR scheduling)
+
+Balanced learning using class weights
+
+Visualizations Included
+
+Training accuracy and loss curves
+
+Confusion matrix
+
+Per-class recall bar chart
+
+Precision-recall curves
+
+Conclusion
+This project demonstrates that strategic enhancements such as BatchNormalization, adaptive learning rate scheduling, and class weighting can significantly improve model accuracy and generalization. The final V2 CNN model achieved strong, reliable performance, making it well-suited for practical animal image classification applications.

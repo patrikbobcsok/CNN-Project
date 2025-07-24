@@ -1,0 +1,6 @@
+raw-img/
+__pycache__/
+.ipynb_checkpoints/
+*.h5
+*.pyc
+.DS_Store

@@ -1,0 +1,39 @@
+
+# CNN Transfer Learning Report (VGG16 Fine-Tuned)
+
+## Dataset
+- **Dataset**: Animals-10
+- **Image Size**: 160 x 160
+- **Split**: ~80/20 (Train/Validation)
+
+## Model Summary
+
+Model: VGG16 (Fine-Tuned)
+- Base: Pretrained VGG16 (ImageNet)
+- Input Shape: (160, 160, 3)
+- Top Layers:
+    - GlobalAveragePooling2D
+    - Dense(256, activation='relu')
+    - Dropout(0.5)
+    - Dense(10, activation='softmax')
+- Optimizer: Adam
+- Loss: Categorical Crossentropy
+- Callbacks: EarlyStopping, ReduceLROnPlateau
+- Trainable Layers: Top + optionally unfrozen base
+Total Parameters: ~15 million (depends on fine-tuning strategy)
+
+
+## Evaluation Metrics (on validation set)
+- **Accuracy**: 0.8955
+- **Precision**: 0.8875
+- **Recall**: 0.8909
+- **F1 Score**: 0.8886
+
+## Observations
+- Transfer learning allowed faster convergence and better accuracy.
+- Fine-tuning improved performance over frozen base model.
+- EarlyStopping and learning rate scheduling helped avoid overfitting.
+- Validation accuracy reached ~90%, the highest among tested models.
+
+## Visualizations
+- See 'vgg16_finetuned_training_history.png' for training curves.
